@@ -12,6 +12,7 @@ interface Request {
   value: number;
   category: string;
 }
+
 class CreateTransactionService {
   public async execute({
     title,
@@ -21,10 +22,6 @@ class CreateTransactionService {
   }: Request): Promise<Transaction> {
     const transactionsRepository = getCustomRepository(TransactionsRepository);
     const categoryRepository = getRepository(Category);
-
-    // if (!['income', 'outcome'].includes(type)) {
-    //   throw new Error('Transaction type is invalid');
-    // }
 
     const { total } = await transactionsRepository.getBalance();
 
